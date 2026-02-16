@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>DOJ - Calendrier</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+<header>
+    <h2>Calendrier - DOJ</h2>
+    <div class="user-section">
+        <span id="welcomeUser"></span>
+        <button onclick="logout()">Déconnexion</button>
+    </div>
+</header>
+
+<div class="calendar-container">
+    <div class="calendar-grid">
+
+        <div class="day-column">
+            <h3>Dimanche 15 février</h3>
+            <div class="tasks"></div>
+            <p class="no-task">Aucune tâche</p>
+            <div class="add-btn">+</div>
+        </div>
+
+        <div class="day-column">
+            <h3>Lundi 16 février</h3>
+            <div class="tasks"></div>
+            <p class="no-task">Aucune tâche</p>
+            <div class="add-btn">+</div>
+        </div>
+
+        <div class="day-column">
+            <h3>Mardi 17 février</h3>
+            <div class="tasks"></div>
+            <p class="no-task">Aucune tâche</p>
+            <div class="add-btn">+</div>
+        </div>
+
+        <div class="day-column">
+            <h3>Mercredi 18 février</h3>
+            <div class="tasks"></div>
+            <p class="no-task">Aucune tâche</p>
+            <div class="add-btn">+</div>
+        </div>
+
+        <div class="day-column">
+            <h3>Jeudi 19 février</h3>
+            <div class="tasks"></div>
+            <p class="no-task">Aucune tâche</p>
+            <div class="add-btn">+</div>
+        </div>
+
+        <div class="day-column">
+            <h3>Vendredi 20 février</h3>
+            <div class="tasks"></div>
+            <p class="no-task">Aucune tâche</p>
+            <div class="add-btn">+</div>
+        </div>
+
+        <div class="day-column">
+            <h3>Samedi 21 février</h3>
+            <div class="tasks"></div>
+            <p class="no-task">Aucune tâche</p>
+            <div class="add-btn">+</div>
+        </div>
+
+    </div>
+</div>
+
+<!-- MODAL -->
+
+<div id="taskModal" class="modal">
+    <div class="modal-content">
+        <h3>Nouvelle audience</h3>
+
+        <input type="text" id="taskTitle" placeholder="Nom complet">
+        <input type="text" id="taskLocation" placeholder="Lieu">
+        <input type="time" id="taskTime">
+        <input type="number" id="taskMoney" placeholder="Montant en $">
+
+        <select id="taskType">
+            <option value="procès">Procès</option>
+            <option value="cérémonie">Cérémonie</option>
+            <option value="urgence">Urgence</option>
+        </select>
+
+        <textarea id="taskDesc" placeholder="Description"></textarea>
+
+        <div class="modal-buttons">
+            <button onclick="closeModal()" class="cancel-btn">Annuler</button>
+            <button onclick="addTask()" class="confirm-btn">Créer</button>
+        </div>
+    </div>
+</div>
+
+<script src="dashboard.js"></script>
+
+</body>
+</html>

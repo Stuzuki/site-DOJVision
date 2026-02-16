@@ -1,0 +1,166 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: url("background.jpg") no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(8px);
+    background: rgba(0,0,0,0.6);
+}
+
+/* ================= CARD ================= */
+
+.login-card {
+    position: relative;
+    width: 380px;
+    padding: 50px 40px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+    color: white;
+    text-align: center;
+    animation: fadeIn 1.2s ease forwards;
+    transform: translateY(40px);
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-card h1 {
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.login-card p {
+    font-size: 14px;
+    margin-bottom: 30px;
+    opacity: 0.7;
+}
+
+/* ================= LOGO PREMIUM ================= */
+
+.logo-container {
+    position: relative;
+    width: 170px;
+    height: 170px;
+    margin: 0 auto 25px auto;
+    opacity: 0;
+    animation: logoAppear 1s ease forwards;
+    animation-delay: 2s;
+}
+
+@keyframes logoAppear {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.logo {
+    width: 120px;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+/* Cercle doré animé */
+
+.gold-ring {
+    position: absolute;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    border: 3px solid gold;
+    box-shadow: 0 0 20px gold;
+    animation: rotateRing 6s linear infinite;
+}
+
+@keyframes rotateRing {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ================= INPUTS ================= */
+
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255,255,255,0.3);
+    color: white;
+    outline: none;
+    font-size: 14px;
+}
+
+.input-group label {
+    position: absolute;
+    left: 0;
+    top: 12px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    transition: 0.3s;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+    top: -10px;
+    font-size: 11px;
+    color: #8b5cf6;
+}
+
+.input-group input:focus {
+    border-bottom: 2px solid #8b5cf6;
+    box-shadow: 0 5px 15px rgba(139,92,246,0.4);
+}
+
+/* ================= BOUTON ================= */
+
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(90deg, #5e72e4, #825ee4);
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(94,114,228,0.4);
+}
+
+button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(130,94,228,0.6);
+}
+
+button:active {
+    transform: translateY(0) scale(0.95);
+}

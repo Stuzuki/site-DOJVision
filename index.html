@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Cour Suprême - Connexion</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<div class="login-card">
+
+    <div class="logo-container">
+        <div class="gold-ring"></div>
+        <img src="logo.png" alt="Logo Cour Suprême" class="logo">
+    </div>
+
+    <h1>COUR SUPRÊME</h1>
+    <p>Accès réservé aux membres autorisés</p>
+
+    <form id="loginForm">
+        <div class="input-group">
+            <input type="text" id="username" required>
+            <label>Nom d'utilisateur</label>
+        </div>
+
+        <div class="input-group">
+            <input type="password" id="password" required>
+            <label>Mot de passe</label>
+        </div>
+
+        <button type="submit" id="loginBtn">Se connecter</button>
+        <p id="errorMsg" style="color:red; margin-top:10px;"></p>
+    </form>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
