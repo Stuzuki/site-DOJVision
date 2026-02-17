@@ -39,8 +39,6 @@ header button:hover {
     transform: scale(1.05);
 }
 
-/* ================= CALENDAR ================= */
-
 .calendar-container {
     padding: 40px;
 }
@@ -270,4 +268,5 @@ header button:hover {
 .confirm-btn:active {
     transform: scale(0.96);
 }
+
 
