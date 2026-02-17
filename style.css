@@ -22,8 +22,6 @@ body {
     background: rgba(0,0,0,0.6);
 }
 
-/* ================= CARD ================= */
-
 .login-card {
     position: relative;
     width: 380px;
@@ -55,8 +53,6 @@ body {
     margin-bottom: 30px;
     opacity: 0.7;
 }
-
-/* ================= LOGO PREMIUM ================= */
 
 .logo-container {
     position: relative;
@@ -102,8 +98,6 @@ body {
     to { transform: rotate(360deg); }
 }
 
-/* ================= INPUTS ================= */
-
 .input-group {
     position: relative;
     margin-bottom: 25px;
@@ -141,8 +135,6 @@ body {
     box-shadow: 0 5px 15px rgba(139,92,246,0.4);
 }
 
-/* ================= BOUTON ================= */
-
 button {
     width: 100%;
     padding: 14px;
@@ -164,3 +156,4 @@ button:hover {
 button:active {
     transform: translateY(0) scale(0.95);
 }
+
