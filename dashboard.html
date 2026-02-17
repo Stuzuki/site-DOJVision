@@ -2,105 +2,101 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Calendrier - Cour Suprême</title>
+    <title>DOJ - Calendrier</title>
     <link rel="stylesheet" href="dashboard.css">
 </head>
 <body>
 
 <header>
-    <h2>Calendrier - Cour Suême</h2>
-    <div>
+    <h2>Calendrier - DOJ</h2>
+    <div class="user-section">
         <span id="welcomeUser"></span>
         <button onclick="logout()">Déconnexion</button>
     </div>
 </header>
 
 <div class="calendar-container">
-    <div id="calendar"></div>
+    <div class="calendar-grid">
+
+        <div class="day-column">
+            <h3>Dimanche 15 février</h3>
+            <div class="tasks"></div>
+            <p class="no-task">Aucune tâche</p>
+            <div class="add-btn">+</div>
+        </div>
+
+        <div class="day-column">
+            <h3>Lundi 16 février</h3>
+            <div class="tasks"></div>
+            <p class="no-task">Aucune tâche</p>
+            <div class="add-btn">+</div>
+        </div>
+
+        <div class="day-column">
+            <h3>Mardi 17 février</h3>
+            <div class="tasks"></div>
+            <p class="no-task">Aucune tâche</p>
+            <div class="add-btn">+</div>
+        </div>
+
+        <div class="day-column">
+            <h3>Mercredi 18 février</h3>
+            <div class="tasks"></div>
+            <p class="no-task">Aucune tâche</p>
+            <div class="add-btn">+</div>
+        </div>
+
+        <div class="day-column">
+            <h3>Jeudi 19 février</h3>
+            <div class="tasks"></div>
+            <p class="no-task">Aucune tâche</p>
+            <div class="add-btn">+</div>
+        </div>
+
+        <div class="day-column">
+            <h3>Vendredi 20 février</h3>
+            <div class="tasks"></div>
+            <p class="no-task">Aucune tâche</p>
+            <div class="add-btn">+</div>
+        </div>
+
+        <div class="day-column">
+            <h3>Samedi 21 février</h3>
+            <div class="tasks"></div>
+            <p class="no-task">Aucune tâche</p>
+            <div class="add-btn">+</div>
+        </div>
+
+    </div>
 </div>
 
-<!-- Firebase -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+<!-- MODAL -->
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBvxjntS-Z1XrHa9a0o0N1--bssp7xym_U",
-  authDomain: "dojvision-be614.firebaseapp.com",
-  projectId: "dojvision-be614",
-  storageBucket: "dojvision-be614.firebasestorage.app",
-  messagingSenderId: "1073844982688",
-  appId: "1:1073844982688:web:717e4e2d4503267ff4cac5",
-  measurementId: "G-63FBJPM070"
-};
+<div id="taskModal" class="modal">
+    <div class="modal-content">
+        <h3>Nouvelle audience</h3>
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+        <input type="text" id="taskTitle" placeholder="Nom complet">
+        <input type="text" id="taskLocation" placeholder="Lieu">
+        <input type="time" id="taskTime">
+        <input type="number" id="taskMoney" placeholder="Montant en $">
 
-const calendar = document.getElementById("calendar");
-const user = localStorage.getItem("loggedUser") || "Invité";
-document.getElementById("welcomeUser").innerText = "Connecté : " + user;
+        <select id="taskType">
+            <option value="procès">Procès</option>
+            <option value="cérémonie">Cérémonie</option>
+            <option value="urgence">Urgence</option>
+        </select>
 
-window.logout = function() {
-    localStorage.removeItem("loggedUser");
-    window.location.href = "index.html";
-};
+        <textarea id="taskDesc" placeholder="Description"></textarea>
 
-// 🔥 Charger en temps réel
-onSnapshot(collection(db, "audiences"), (snapshot) => {
-    calendar.innerHTML = "";
-    snapshot.forEach((docSnap) => {
-        const data = docSnap.data();
-        const id = docSnap.id;
+        <div class="modal-buttons">
+            <button onclick="closeModal()" class="cancel-btn">Annuler</button>
+            <button onclick="addTask()" class="confirm-btn">Créer</button>
+        </div>
+    </div>
+</div>
 
-        const card = document.createElement("div");
-        card.className = "event-card";
-        card.innerHTML = `
-            <h3>${data.time} - ${data.type}</h3>
-            <p><strong>${data.name}</strong> - ${data.room}</p>
-            <p style="color:#00ff88;">$ ${data.money}</p>
-            <p>Créé par : ${data.createdBy}</p>
-            <button onclick="assignEvent('${id}')">S'assigner</button>
-            <button onclick="deleteEvent('${id}')">Supprimer</button>
-        `;
-        calendar.appendChild(card);
-    });
-});
-
-// 🔥 Créer audience
-window.createEvent = async function() {
-    const name = prompt("Nom audience ?");
-    const room = prompt("Salle ?");
-    const time = prompt("Heure ?");
-    const money = prompt("Montant ?");
-    const type = prompt("Type (procès/cérémonie) ?");
-
-    await addDoc(collection(db, "audiences"), {
-        name,
-        room,
-        time,
-        money,
-        type,
-        createdBy: user,
-        assignedTo: ""
-    });
-};
-
-// 🔥 Supprimer
-window.deleteEvent = async function(id) {
-    await deleteDoc(doc(db, "audiences", id));
-};
-
-// 🔥 S'assigner
-window.assignEvent = async function(id) {
-    await updateDoc(doc(db, "audiences", id), {
-        assignedTo: user
-    });
-};
-
-</script>
-
-<button onclick="createEvent()" class="create-btn">+ Nouvelle audience</button>
+<script type="module" src="dashboard.js"></script>
 
 </body>
 </html>
