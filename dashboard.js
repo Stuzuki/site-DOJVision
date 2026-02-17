@@ -9,7 +9,6 @@ import {
     onSnapshot
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-/* ================= FIREBASE ================= */
 
 const firebaseConfig = {
     apiKey: "AIzaSyBvxjntS-Z1XrHa9a0o0N1--bssp7xym_U",
@@ -23,8 +22,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-/* ================= USER ================= */
-
 const user = localStorage.getItem("user");
 if (!user) window.location.href = "index.html";
 
@@ -37,8 +34,6 @@ window.logout = function () {
 
 let currentColumn = null;
 let editingTaskId = null;
-
-/* ================= OUVERTURE MODAL ================= */
 
 document.querySelectorAll(".add-btn").forEach(btn => {
     btn.addEventListener("click", function () {
@@ -56,8 +51,6 @@ window.closeModal = function () {
     document.getElementById("taskMoney").value = "";
     document.getElementById("taskDesc").value = "";
 };
-
-/* ================= AJOUT / MODIFICATION ================= */
 
 window.addTask = async function () {
 
@@ -97,11 +90,8 @@ window.addTask = async function () {
     closeModal();
 };
 
-/* ================= REALTIME LOAD ================= */
-
 onSnapshot(collection(db, "audiences"), snapshot => {
 
-    // reset affichage
     document.querySelectorAll(".tasks").forEach(el => el.innerHTML = "");
     document.querySelectorAll(".no-task").forEach(el => el.style.display = "block");
 
@@ -154,8 +144,6 @@ onSnapshot(collection(db, "audiences"), snapshot => {
 
 });
 
-/* ================= EVENTS ================= */
-
 function attachTaskEvents(taskDiv, id, data) {
 
     taskDiv.querySelector(".btn-delete").addEventListener("click", async function () {
@@ -182,3 +170,4 @@ function attachTaskEvents(taskDiv, id, data) {
         document.getElementById("taskDesc").value = data.desc;
     });
 }
+
